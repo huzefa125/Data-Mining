@@ -1,0 +1,43 @@
+View(iris)
+
+#HISTOGRAM
+
+hist(iris$Sepal.Length,
+     main = "Histogram of Sepal Length",
+     xlab = "Sepal Length",
+     col = "skyblue",
+     border = "black")
+
+legend("topright", legend = "sepal length", fill = "skyblue", bty = 1)
+
+
+
+#BAR PLOT
+
+species_count <- table(iris$Species)
+species_count
+
+colors <- rainbow(length(species_count))
+colors
+
+barplot(species_count,
+        main = "Bar Plot of Species Count",
+        col = colors,
+        ylab = "Counts",
+        names.arg = names(species_count))
+
+legend("topright", legend = names(species_count), fill = colors, bty = 1)
+
+
+
+#PIE CHART
+
+colors <- heat.colors(length(species_count))
+colors
+
+pie(species_count,
+    main = "Pie chart of Species count",
+    col = colors,
+    labels = paste0(names(species_count), "(", species_count, ")"))
+
+legend("topright", legend = names(species_count), fill = colors, bty = 1, cex = 1)

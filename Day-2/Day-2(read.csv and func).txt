@@ -1,0 +1,63 @@
+getwd()  #Return current dicertory
+
+
+setwd("C:\\Users\\Administrator\\Desktop")   #To set dicertory
+getwd()
+
+
+student_data <- read.csv("student.csv")   
+student_data
+
+
+head(student_data)
+head(student_data,5)
+
+
+tail(student_data)
+tail(student_data,4)
+
+
+dim(student_data)
+
+
+nrow(student_data)
+ncol(student_data)
+
+
+summary(student_data)
+
+
+str(student_data)
+
+
+student_data[1:4,]
+student_data[,1:4]
+student_data[1:4,2:5]
+student_data[1:4,"Name"]
+
+
+sapply(student_data,class)
+
+
+sum_marks <- sum(student_data$Sub_1)
+sum_marks 
+
+
+sum_marks <- sum(student_data$Sub_1,student_data$Sub_2,student_data$Sub_3)
+sum_marks
+
+
+mean_marks <- mean(student_data$Total_marks)
+mean_marks
+
+
+#read.delim()
+
+student_data1 <- read.delim("student_delim.txt", header=TRUE)
+student_data1
+
+
+#read.delim2()
+
+student_data2 <- read.delim2("student_delim2.txt", header=TRUE)
+student_data2

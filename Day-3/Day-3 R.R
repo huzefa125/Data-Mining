@@ -1,0 +1,71 @@
+getwd()
+
+
+setwd("Z:\\Sem-5\\DM\\Day-3")
+getwd()
+
+
+emp <- read.csv("employee.csv")  #read file
+View(emp)     #To view Data in table formate
+
+
+head(emp,5)   #To print first 5 records
+tail(emp,5)   #To print last 5 records
+
+
+dim(emp)    #No. of rows and cols
+
+
+colnames(emp)   #Print columns name
+
+
+str(emp)    #Print Structure of emp
+
+
+emp[emp$Department == "IT",]    #print emp who are working in IT
+
+
+emp[emp$Marks > 80,]    #print emp who's marks are greater than 80
+
+
+
+emp[emp$Age > 21 & emp$Department == "IT",]    #print emp who's age are greater than 21 and Department is IT
+
+
+emp[,c("Name","Marks")]    #print Name and Marks of all emp
+
+
+marks_ascending <- emp[order(emp$Marks, decreasing = TRUE),]  #Sort in Ascending order
+marks_ascending
+
+
+score_desending <- emp[order(emp$Score, decreasing = FALSE),]  #Sort in Desending order
+score_desending
+
+
+write.csv(emp,"Emp_copy.csv")
+
+
+avg_marks <- mean(emp$Marks)  #To find average
+avg_marks
+
+
+max_score <- max(emp$Score)
+max_score
+
+
+min_score <- min(emp$Score)
+min_score
+
+
+table(emp$Department)  #to count person's department wise
+
+
+emp$Result <- ifelse(emp$Marks > 70,"PASS","FAIL")
+emp$Result
+
+
+emp[emp$Result == "FAIL",]
+
+
+write.csv(emp,"Emp_copy.csv", row.names = FALSE)

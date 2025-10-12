@@ -1,0 +1,26 @@
+class(AirPassengers)  	#To check datatype
+
+AirPassengers		#T0 display data
+
+
+months <- seq(as.Date("1949-01-01"), as.Date("1960-12-31"), by="month")   # Creating seq of Months
+months
+
+passengers <- as.numeric(AirPassengers)		# to store passenger vector
+passengers 
+
+
+air_data_frame <- data.frame( Months = months, Passengers = as.numeric(AirPassengers))   # Creating DATA FRAME
+View(air_data_frame)
+
+or
+
+air_data_frame <- data.frame( Months = months, Passengers = passengers)   # Creating DATA FRAME
+View(air_data_frame)
+
+
+
+air_data_frame[air_data_frame$Passengers==max(air_data_frame$Passengers),]	# Display row which has max passengers 
+
+
+air_data_frame[order(air_data_frame$Passengers, decreasing = TRUE),]		# Sort Passenger Accending

@@ -1,0 +1,23 @@
+data <- datasets::airquality
+
+View(data)
+summary(data)
+
+
+remove_NA <- function(df, cols) {
+  
+  befor_remove <- nrow(df)
+  
+  df <- na.omit(df[,cols, drop = FALSE])
+  
+  after_remove <- nrow(df)
+  
+  cat("Row's affected:", befor_remove - after_remove)
+  
+  return(df)
+}
+
+clean_data <- remove_NA(data, c("Ozone","Solar.R"))
+View(clean_data)
+
+summary(clean_data)

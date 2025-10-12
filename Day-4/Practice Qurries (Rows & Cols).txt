@@ -1,0 +1,64 @@
+#columns Qurry
+
+View(iris)  						# to view dataset in table format
+
+
+iris[,c("Sepal.Length","Species")]   			# to view Sepal.Length and Species columns
+
+
+iris[,-4]						# to delete 4th column 
+
+
+colnames(iris)						# to viewe all columns names
+
+
+colnames(iris)[1] <- "Sepallen"				# to rename 1st column
+iris
+
+
+iris$Sepal.Area <- iris$Sepallen*iris$Sepal.Width	# to add new column(Sepal.Area)
+iris
+
+
+iris[,sapply(iris,is.numeric)]				# to check all numeric columns only 
+
+
+colMeans(iris[,sapply(iris,is.numeric)])		# to calculate mean of all numeric columns
+
+
+
+
+#row qurry
+
+head(iris,10)						# to display first 10 rows
+
+
+tail(iris,5)						# to display last 5 rows
+
+
+iris[iris$Species=="setosa",]				# to display all rows where species == setosa
+
+
+iris[iris$Sepallen > 7,]				# to displayall rows where sepallen > 0.7
+
+
+iris[20:30,]						# to display 20-30 rows
+
+
+versi_color <- iris[iris$Species=="versicolor",]
+versi_color
+
+nrow(versi_color)
+
+
+iris[iris$Petal.Width < 0.2,]
+
+
+iris[order(iris$Sepallen, decreasing = TRUE),]
+
+
+iris[order(iris$Petal.Width, decreasing = FALSE),]
+
+
+max(iris$Sepallen)
+which.max(iris$Sepallen)

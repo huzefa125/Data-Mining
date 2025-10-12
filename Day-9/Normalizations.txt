@@ -1,0 +1,50 @@
+library(dplyr)
+
+data(iris)
+View(iris)
+
+
+#Min-Max for all numeric Columns
+
+iris_min_max <- iris%>%mutate(across(where(is.numeric),~(.-min(.))/(max(.)-min(.))))
+View(iris_min_max)
+
+
+#Min-Max for specific columns
+
+iris_min_max <- iris%>%mutate(across(c("Sepal.Length","Petal.Length"),~(.-min(.))/(max(.)-min(.))))
+View(iris_min_max)
+
+
+
+#Z-score for all numeric Columns
+
+iris_zscore <- iris%>%mutate(across(where(is.numeric),~(.-mean(.))/sd(.)))
+View(iris_zscore)
+
+
+#Z-score for specific columns
+
+iris_zscore <- iris%>%mutate(across(c("Sepal.Length","Petal.Length"),~(.-mean(.))/sd(.)))
+View(iris_zscore)
+
+
+
+#Decimal Scaling for all numeric Columns
+
+iris_decimal <- iris%>%mutate(across(where(is.numeric),~./(10^ceiling(log10(max(abs(.)))))))
+View(iris_decimal)
+
+#Decimal Scaling for specific columns
+
+iris_decimal <- iris%>%mutate(across(c("Sepal.Length","Petal.Length"),~./(10^ceiling(log10(max(abs(.)))))))
+View(iris_decimal)       
+
+
+
+#Using Scale
+
+
+
+
+                              

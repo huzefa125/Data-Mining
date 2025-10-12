@@ -1,0 +1,21 @@
+data <- datasets::airquality
+summary(data)
+View(data)
+
+
+replace_NA <- function(df,cols) {
+  
+  for (colname in cols) {
+    
+    mean_value <- mean(df[[colname]],na.rm=TRUE)
+    #print(mean_value)
+    
+    df[[colname]][is.na(df[[colname]])] <- mean_value
+  }
+  
+  return(df)
+}
+
+clean_data <- replace_NA(data,c("Ozone","Solar.R"))
+View(clean_data)
+summary(clean_data)

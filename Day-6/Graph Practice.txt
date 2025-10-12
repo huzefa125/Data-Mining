@@ -1,0 +1,104 @@
+View(mtcars)
+
+#HISTOGRAM
+hist(mtcars$mpg,
+     main = "Histogram of Miles pr Gallon",
+     xlab = "MPG",
+     col = "lightgreen",
+     border = "black",
+     breaks = 2)
+
+legend("topright",
+       legend = "Miles per Gallon",
+       fill = "lightgreen",
+       bty = 1)
+
+
+
+#Barplot
+cylinder_count <- table(mtcars$cyl)
+cylinder_count
+
+colors = rainbow(length(cylinder_count))
+colors
+
+barplot(cylinder_count,
+        main = "Barplot of Cylinder",
+        ylab = "Count",
+        names.arg = names(cylinder_count),
+        col = colors)
+
+legend("topright",
+       fill = colors,
+       bty = 1,
+       legend = names(cylinder_count))
+
+
+
+#Pie Chart
+
+class(Titanic)
+
+df <- as.data.frame(Titanic)
+df
+
+class(df)
+
+
+count <- table(df$Class)
+count
+
+
+pie(count,
+    main = "Pie chart of Class",
+    col = colors,
+    labels = paste0(names(count),"(",count,"%)"))
+
+
+legend("topright",
+       fill = colors,
+       bty = 1,
+       legend = names(count))
+
+
+#Box Plot
+
+class(airquality)
+View(airquality)
+
+
+num <- airquality
+num
+
+boxplot(num,
+        main = "Box plot",
+        col = colors,
+        border = "black",
+        ylab = "Values")
+
+
+
+#Scatter Plot
+
+View(iris)
+class(iris)
+
+count_data <- table(iris$Species)
+count_data
+
+colors <- rainbow(length(count_data))
+
+plot(iris$Sepal.Width,iris$Petal.Width,
+     main = "Scatter Plot",
+     xlab = "Sepal Width",
+     ylab = "Petal width",
+     col = colors,
+     pch = 20)
+
+
+legend("topleft",
+       fill = colors,
+       legend = names(count_data),
+       pch = 20,
+       cex = 0.5,
+       bty = 1)

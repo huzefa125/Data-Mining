@@ -1,0 +1,27 @@
+#Find Outliers and print them
+
+View(iris)
+
+num_data <- iris[1:4]
+num_data
+
+boxplot(num_data)
+
+print_outliers <- function(df,colname) {
+  
+  Q1 <- quantile(df[[colname]], 0.25, na.rm = TRUE)
+  Q3 <- quantile(df[[colname]], 0.75, na.rm = TRUE)
+  IQR <- Q3-Q1
+  
+  upper_bound <- Q3+1.5*IQR
+  print("Upper_bound:",upper_bound)
+  
+  lower_bound <- Q1-1.5*IQR
+  print("lower_bound:",lower_bound)
+  
+  outliers <- df[[colname]] [ df[[colname]] < lower_bound | df[[colname]] > upper_bound ]
+  print("Outliers:",outliers)
+  
+}
+
+print_outliers(num_data,Sepal.Width)
