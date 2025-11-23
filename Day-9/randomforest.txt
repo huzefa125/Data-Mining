@@ -1,0 +1,35 @@
+library(naivebayes)
+
+getwd()
+setwd("C://Users//huzefa//OneDrive//Desktop")
+getwd()
+mul <- read.csv("multi.csv")
+
+replace_na <- function(df,cols){
+  for (col in cols) {
+    mean_value <- mean(df[[col]],na.rm=TRUE)
+    df[[col]][is.na(df[[col]])] <- mean_value
+  }
+  return(df)
+}
+
+clean_df <- replace_na(mul,c("Price","Area_sqft","Bedrooms","Bathrooms","House_Age"))
+clean_df
+
+set.seed(123)
+sample_index <- sample(1:nrow(clean_df),0.7*nrow(clean_df))
+train_data <- clean_df[sample_index,]
+test_data <- clean_df[-sample_index,]
+lm_model <- lm(Price ~.,data = train_data)
+predictions <- predict(lm_model,newdata = test_data)
+comp <- data.frame(Actual = test_data$Price,Predicted = predictions)
+print(comp)
+rmse <- sqrt(mean((comp$Actual - comp$Predicted)^2))
+sst <- sum((comp$Actual - mean(comp$Actual))^2)
+sse <- sum((comp$Actual - comp$Predicted)^2)
+rsq <- 1 - (sse/sst)
+accuracy <- rsq * 100
+accuracy
+rmse
+rsq
+plot(test_data$Price,predictions,main="Price vs house ",abline(a=0,b=1,,col="red",lwd=2))
