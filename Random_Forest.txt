@@ -1,0 +1,30 @@
+library(randomForest)
+
+
+data <- read.csv("C:\\Users\\imcag230029\\Desktop\\diabetes_patient_data.csv")
+View(data)
+
+set.seed(123)
+data$Outcome <- as.factor(data$Outcome)
+
+sample_index <- sample(1:nrow(data), 0.7*nrow(data))
+
+train_data <- data[sample_index,]
+test_data <- data[-sample_index,]
+
+View(train_data)
+view(test_data)
+
+model <- randomForest(Outcome~., data = train_data, ntree=50)
+model
+
+prediction <- predict(model,test_data)
+prediction
+
+accuracy <- mean(prediction == test_data$Outcome)
+per_acc <- round(accuracy*100,2)
+cat("Accuracy:",per_acc,"%")
+
+varImpPlot(model, main = "Variable Imp Plot", pch = 19)
+
+plot(margin(model,test_data$Outcome))

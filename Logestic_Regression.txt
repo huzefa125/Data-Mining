@@ -1,0 +1,26 @@
+data <- read.csv("C:\\Users\\imcag230029\\Desktop\\diabetes_patient_data.csv")
+View(data)
+
+data$Outcome <- factor(data$Outcome,labels = c("Y","N"))
+set.seed(123)
+
+sample_index <- sample(1:nrow(data), 0.7*nrow(data))
+
+train_data <- data[sample_index,]
+test_data <- data[-sample_index,]
+
+model <- glm(Outcome~Glucose+BloodPressure+Insulin, data = train_data, family = binomial())
+model
+
+probability <- predict(model, newdata = test_data) 
+probability
+
+prediction <- ifelse(probability >= 0.5, "Y","N")
+prediction
+
+table(Predited = prediction, Actual = test_data$Outcome)
+
+accuracy <- mean(prediction == test_data$Outcome)*100
+accuracy
+cat("Accuracy:", round(accuracy,2),"\n")
+

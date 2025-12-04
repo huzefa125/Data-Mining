@@ -1,0 +1,20 @@
+library(arules)
+library(arulesViz)
+
+data("Groceries")
+summary(Groceries)
+
+rules <-  apriori(Groceries, parameter = list(supp=0.01, conf=0.5))
+rules
+
+inspect(head(rules,10))
+
+rules_confi <- sort(rules, by = "confidence", decreasing = TRUE)
+inspect(head(rules_confi,10))
+
+rules_lift <- sort(rules, by = "lift", decreasing = TRUE)
+inspect(head(rules_lift,10))
+
+plot(rules)
+plot(rules,method = "graph")
+plot(rules, method = "grouped")

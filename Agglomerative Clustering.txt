@@ -1,0 +1,16 @@
+library(cluster)
+
+data("iris")
+
+data <- iris[ ,1:4]
+
+scaled_data <- scale(data)
+
+distance <- dist(scaled_data, method = "euclidean")
+
+hc_agglomerative <- hclust(distance, method = "complete")
+hc_agglomerative
+
+plot(hc_agglomerative,
+     main = "Agglomerative Clustering Dendrogram",
+     cex=0.6)

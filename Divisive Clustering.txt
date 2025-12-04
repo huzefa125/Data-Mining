@@ -1,0 +1,15 @@
+library(cluster)
+
+data("iris")
+
+data <- iris[ ,1:4]
+
+scaled_data <- scale(data)
+
+distance <- diana(scaled_data)
+
+plot(as.hclust(distance),
+     main = "Divisive Clustering Dendrogram",
+     xlab = "",
+     sub = "",
+     cex=0.6)

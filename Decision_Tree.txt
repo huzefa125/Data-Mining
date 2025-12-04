@@ -1,0 +1,28 @@
+library(rpart)
+library(rpart.plot)
+
+data <- read.csv("C:\\Users\\IMCAG230029\\Desktop\\purchase_decision_data.csv")
+View(data)
+
+set.seed(123)
+
+sample_index <- sample(1:nrow(data),0.7*nrow(data))
+
+train_data <- data[sample_index,]
+test_data <- data[-sample_index,]
+
+View(train_data)
+View(test_data)
+
+model <- rpart(Purchased~Annual_Income,data=train_data,method = "class")
+model
+
+prediction <- predict(model,test_data,type = "class")
+prediction
+
+accuracy <- mean(prediction == test_data$Purchased)
+cat("Model accurancy:", round(accuracy*100),"%")
+
+table(Predicted = prediction, Actual = test_data$Purchased)
+
+rpart.plot(model, main="Decision Tree")

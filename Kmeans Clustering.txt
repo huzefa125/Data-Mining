@@ -1,0 +1,25 @@
+library(cluster)
+data("iris")
+
+head(iris)
+
+data <- iris[ ,-5]
+scaled_data <- scale(data)
+
+set.seed(123)
+
+kmeans <- kmeans(scaled_data, centers = 3, nstart = 25)
+kmeans
+kmeans$cluster
+
+final_data <- cbind(data, cluster=kmeans$cluster)
+View(final_data)
+
+table(iris$Species, kmeans$cluster)
+
+clusplot(scaled_data, kmeans$cluster,
+         color = TRUE,
+         shade = TRUE,
+         lines = 0,
+         labels = 2,
+         main = "Kmeans Cluster")

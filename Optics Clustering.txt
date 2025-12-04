@@ -1,0 +1,23 @@
+library(dbscan)
+library(Cluster)
+
+data("iris")
+head(iris)
+
+data <- iris[,-5]
+scaled_data <- scale(data)
+
+model <- dbscan(scaled_data, eps = 0.5, minPts = 5)
+model
+model$cluster
+
+final_dataset <- cbind(iris, cluster=model$cluster)
+View(final_dataset)
+
+table(iris$Species, model_cluster$cluster)
+
+clusplot(scaled_data, model_cluster$cluster,
+         color=TRUE,
+         shed=TRUE,
+         labels=2,
+         main="OPTICS")

@@ -1,0 +1,23 @@
+library(cluster)
+
+data("iris")
+
+data <- iris[ ,1:4]
+
+scaled_data <- scale(data)
+
+set.seed(123)
+
+kmedois <- pam(scaled_data,k=3)
+kmedois
+kmedois$clustering
+kmedois$medoids
+
+table(iris$Species, kmedois$clustering)
+
+clusplot(scaled_data, kmedois$clustering,
+         color = TRUE,
+         shed = TRUE,
+         lines=0,
+         labels = 2,
+         main = "Kmedois Cluster")

@@ -1,0 +1,28 @@
+library(naivebayes)
+
+data <- read.csv("Z:\\Sem-5\\DM\\Day-10 (After Mid)\\diabetes_patient_data.csv")
+View(data)
+
+set.seed(123)
+
+sample_index <- sample(1:nrow(data),0.7*nrow(data)) 
+
+train_data <- data[sample_index,]
+test_data <- data[-sample_index,]
+
+View(train_data)
+View(test_data)
+
+model <- naive_bayes(Outcome~., data = train_data)
+model
+
+prediction <- predict(model, test_data)
+prediction
+
+#Model Accuracy
+accuracy <- mean(prediction == test_data$Outcome)*100
+cat("Naive Bayes accuracy:", round(accuracy,2), "%")
+
+#Confusion Matrix
+table(Predict = prediction, Actual=test_data$Outcome)
+
